@@ -1,13 +1,11 @@
-﻿-- ejecutar este script para recrear las tablas e insertar los datos iniciales en cada una
-
-DROP TABLE IF EXISTS PrestamoEjemplar
+﻿DROP TABLE IF EXISTS PrestamoEjemplar
 DROP TABLE IF EXISTS Ejemplar
 DROP TABLE IF EXISTS Libro
 DROP TABLE IF EXISTS Cliente
 
 CREATE TABLE [dbo].[Cliente]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(10001,1), 
     [Nombre] VARCHAR(50) NULL, 
     [FechaNacimiento] DATE NULL, 
     [Sexo] VARCHAR NULL, 
@@ -16,7 +14,7 @@ CREATE TABLE [dbo].[Cliente]
 
 CREATE TABLE [dbo].[Libro]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [NombreOriginal] VARCHAR(100) NULL, 
     [NombreTraducido] VARCHAR(100) NULL, 
     [AnioEdicion] NUMERIC(4) NULL, 
@@ -48,28 +46,28 @@ CREATE TABLE [dbo].[PrestamoEjemplar]
     CONSTRAINT [CK_PrestamoEjemplar_EjemplarPerdido] CHECK (EjemplarPerdido in ('S','N'))
 )
 
-INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10001, 'Daniel Lepiz', DATEFROMPARTS(2000,1,21),'M')
-INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10002, 'Kevin Mora', DATEFROMPARTS(1995,2,22),'M')
-INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10003, 'Jorge Garro', DATEFROMPARTS(1999,3,23),'M')
-INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10004, 'Jose Fallas', DATEFROMPARTS(1994,4,24),'M')
-INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10005, 'Ricardo Gamboa', DATEFROMPARTS(1998,5,25),'M')
-INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10006, 'Esmeralda Ramírez', DATEFROMPARTS(1993,6,26),'F')
+INSERT INTO Cliente (Nombre,FechaNacimiento,Sexo) VALUES ('Daniel Lepiz', DATEFROMPARTS(2000,1,21),'M')
+INSERT INTO Cliente (Nombre,FechaNacimiento,Sexo) VALUES ('Kevin Mora', DATEFROMPARTS(1995,2,22),'M')
+INSERT INTO Cliente (Nombre,FechaNacimiento,Sexo) VALUES ('Jorge Garro', DATEFROMPARTS(1999,3,23),'M')
+INSERT INTO Cliente (Nombre,FechaNacimiento,Sexo) VALUES ('Jose Fallas', DATEFROMPARTS(1994,4,24),'M')
+INSERT INTO Cliente (Nombre,FechaNacimiento,Sexo) VALUES ('Ricardo Gamboa', DATEFROMPARTS(1998,5,25),'M')
+INSERT INTO Cliente (Nombre,FechaNacimiento,Sexo) VALUES ('Esmeralda Ramírez', DATEFROMPARTS(1993,6,26),'F')
 
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (1,'The Fellowship of the Ring','La comunidad del anillo',1954,1)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (2,'The Two Towers','Las dos torres',1954,1)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (3,'The Return of the King','El retorno del rey',1955,1)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (4,'The Philosopher''s Stone','La piedra filosofal',1997,2)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (5,'The Secret Chamber','La camara secreta',1998,2)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (6,'The Prisoner of Azkaban','El prisionero de Azkaban',1999,2) 
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (7,'The Goblet of Fire','El caliz de fuego',2000,2)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (8,'The Order of the Phoenix','La orden del fenix',2003,2)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (9,'The Half-Blood Prince','El principe mestizo',2005,2)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (10,'The Deathly Hallows','Las Reliquias de la Muerte',2007,2)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (11,'A Game of Thrones','Juego de tronos',1996,3)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (12,'A Clash of Kings','Choque de reyes',1998,3)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (13,'A Storm of Swords','Tormenta de espadas',2000,3)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (14,'A Feast for Crows','Festin de cuervos',2005,3)
-INSERT INTO Libro (Id, NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES (15,'A Dance with Dragons','Danza de dragones',2011,3)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Fellowship of the Ring','La comunidad del anillo',1954,1)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Two Towers','Las dos torres',1954,1)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Return of the King','El retorno del rey',1955,1)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Philosopher''s Stone','La piedra filosofal',1997,2)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Secret Chamber','La camara secreta',1998,2)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Prisoner of Azkaban','El prisionero de Azkaban',1999,2) 
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Goblet of Fire','El caliz de fuego',2000,2)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Order of the Phoenix','La orden del fenix',2003,2)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Half-Blood Prince','El principe mestizo',2005,2)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('The Deathly Hallows','Las Reliquias de la Muerte',2007,2)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('A Game of Thrones','Juego de tronos',1996,3)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('A Clash of Kings','Choque de reyes',1998,3)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('A Storm of Swords','Tormenta de espadas',2000,3)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('A Feast for Crows','Festin de cuervos',2005,3)
+INSERT INTO Libro (NombreOriginal, NombreTraducido, AnioEdicion, NumeroEdicion) VALUES ('A Dance with Dragons','Danza de dragones',2011,3)
 
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (101,1,DATEFROMPARTS(2018,3,30),'N','ESP')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (102,1,DATEFROMPARTS(2018,3,30),'N','ESP')
@@ -107,7 +105,7 @@ INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (703,
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (704,7,DATEFROMPARTS(2018,3,30),'N','ING')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (705,7,DATEFROMPARTS(2018,3,30),'N','ING')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (801,8,DATEFROMPARTS(2018,3,30),'N','ESP')
-INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (803,8,DATEFROMPARTS(2018,3,30),'N','ESP')
+INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (802,8,DATEFROMPARTS(2018,3,30),'N','ESP')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (803,8,DATEFROMPARTS(2018,3,30),'N','ESP')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (804,8,DATEFROMPARTS(2018,3,30),'N','ING')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (805,8,DATEFROMPARTS(2018,3,30),'N','ING')

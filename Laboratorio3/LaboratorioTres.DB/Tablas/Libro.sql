@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Libro]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [NombreOriginal] VARCHAR(100) NULL, 
     [NombreTraducido] VARCHAR(100) NULL, 
     [AnioEdicion] NUMERIC(4) NULL, 
