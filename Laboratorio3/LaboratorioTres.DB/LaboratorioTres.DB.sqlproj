@@ -74,5 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\InsertarClientesRandom.sql" />
+    <None Include="Scripts\InsertarLibros.sql" />
+    <None Include="Scripts\InsertarEjemplares.sql" />
+    <None Include="Scripts\InsertarPrestamosEjemplares.sql" />
+    <None Include="Scripts\RecrearTodo.sql" />
   </ItemGroup>
 </Project>

@@ -1,18 +1,6 @@
-﻿/*
-Post-Deployment Script Template							
---------------------------------------------------------------------------------------
- This file contains SQL statements that will be appended to the build script.		
- Use SQLCMD syntax to include a file in the post-deployment script.			
- Example:      :r .\myfile.sql								
- Use SQLCMD syntax to reference a variable in the post-deployment script.		
- Example:      :setvar TableName MyTable							
-               SELECT * FROM [$(TableName)]					
---------------------------------------------------------------------------------------
-*/
-
-Insert into Cliente (Nombre,FechaNacimiento,Sexo) values ('Daniel Lepiz', Cast('7/7/2000' as date),'M');
-Insert into Cliente (Nombre,FechaNacimiento,Sexo) values ('Kevin Mora', Cast('14/11/96' as date),'M');
-Insert into Cliente (Nombre,FechaNacimiento,Sexo) values ('Jorge Garro', Cast('14/11/96' as date),'M');
-Insert into Cliente (Nombre,FechaNacimiento,Sexo) values ('Jose Fallas', Cast('14/11/96' as date),'M');
-Insert into Cliente (Nombre,FechaNacimiento,Sexo) values ('Ricardo Gamboa', Cast('14/11/96' as date),'M');
-Insert into Cliente (Nombre,FechaNacimiento,Sexo) values ('Esmeralda Ramírez', Cast('14/11/96' as date),'M');
+﻿INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10001,'Daniel Lepiz', DATEFROMPARTS(2000,1,21),'M')
+INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10002,'Kevin Mora', DATEFROMPARTS(1995,2,22),'M')
+INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10003,'Jorge Garro', DATEFROMPARTS(1999,3,23),'M')
+INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10004,'Jose Fallas', DATEFROMPARTS(1994,4,24),'M')
+INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10005,'Ricardo Gamboa', DATEFROMPARTS(1998,5,25),'M')
+INSERT INTO Cliente (Id, Nombre,FechaNacimiento,Sexo) VALUES (10006,'Esmeralda Ramírez', DATEFROMPARTS(1993,6,26),'F')
