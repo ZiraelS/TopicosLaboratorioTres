@@ -71,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\InsertClientes.sql" />
-    <None Include="LaboratorioTres.DB.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\InsertarClientesRandom.sql" />

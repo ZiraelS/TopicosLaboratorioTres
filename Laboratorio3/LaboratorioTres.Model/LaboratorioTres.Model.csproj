@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{930E401B-F766-431C-AD2B-9ED471DD2369}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Laboratorio3</RootNamespace>
-    <AssemblyName>Laboratorio3</AssemblyName>
+    <ProjectGuid>{2F6030DD-68AF-4347-B470-8346097501BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LaboratorioTres.Model</RootNamespace>
+    <AssemblyName>LaboratorioTres.Model</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,6 +39,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,12 +49,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Cliente.cs">
+      <DependentUpon>LaboratorioTres.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__RefactorLog.cs">
+      <DependentUpon>LaboratorioTres.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ejemplar.cs">
+      <DependentUpon>LaboratorioTres.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LaboratorioTres.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaboratorioTres.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LaboratorioTres.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaboratorioTres.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LaboratorioTres.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaboratorioTres.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Libro.cs">
+      <DependentUpon>LaboratorioTres.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MisModelos\Cliente.cs" />
+    <Compile Include="PrestamoEjemplar.cs">
+      <DependentUpon>LaboratorioTres.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="LaboratorioTres.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LaboratorioTres.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LaboratorioTres.edmx.diagram">
+      <DependentUpon>LaboratorioTres.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="LaboratorioTres.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LaboratorioTres.edmx</DependentUpon>
+      <LastGenOutput>LaboratorioTres.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LaboratorioTres.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LaboratorioTres.edmx</DependentUpon>
+      <LastGenOutput>LaboratorioTres.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

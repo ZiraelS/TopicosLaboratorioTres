@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LaboratorioTres.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Sexo" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Ejemplar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdLibro" Type="int" />
+          <Property Name="FechaDonacion" Type="date" />
+          <Property Name="Prestamo" Type="varchar" MaxLength="1" />
+          <Property Name="Idioma" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Libro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreOriginal" Type="varchar" MaxLength="100" />
+          <Property Name="NombreTraducido" Type="varchar" MaxLength="100" />
+          <Property Name="AnioEdicion" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="NumeroEdicion" Type="numeric" Precision="4" Scale="0" />
+        </EntityType>
+        <EntityType Name="PrestamoEjemplar">
+          <Key>
+            <PropertyRef Name="IdEjemplar" />
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdEjemplar" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="FechaPrestamo" Type="datetime" />
+          <Property Name="FechaDevolucion" Type="datetime" />
+          <Property Name="FechaDevuelto" Type="datetime" />
+          <Property Name="EjemplarPerdido" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_Ejemplar_Libro">
+          <End Role="Libro" Type="Self.Libro" Multiplicity="0..1" />
+          <End Role="Ejemplar" Type="Self.Ejemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejemplar">
+              <PropertyRef Name="IdLibro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrestamoEjemplar_ToCliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="PrestamoEjemplar" Type="Self.PrestamoEjemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrestamoEjemplar">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrestamoEjemplar_ToEjemplar">
+          <End Role="Ejemplar" Type="Self.Ejemplar" Multiplicity="1" />
+          <End Role="PrestamoEjemplar" Type="Self.PrestamoEjemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ejemplar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrestamoEjemplar">
+              <PropertyRef Name="IdEjemplar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LaboratorioTresDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ejemplar" EntityType="Self.Ejemplar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrestamoEjemplar" EntityType="Self.PrestamoEjemplar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ejemplar_Libro" Association="Self.FK_Ejemplar_Libro">
+            <End Role="Libro" EntitySet="Libro" />
+            <End Role="Ejemplar" EntitySet="Ejemplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrestamoEjemplar_ToCliente" Association="Self.FK_PrestamoEjemplar_ToCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrestamoEjemplar_ToEjemplar" Association="Self.FK_PrestamoEjemplar_ToEjemplar">
+            <End Role="Ejemplar" EntitySet="Ejemplar" />
+            <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LaboratorioTres.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PrestamoEjemplar" Relationship="Self.FK_PrestamoEjemplar_ToCliente" FromRole="Cliente" ToRole="PrestamoEjemplar" />
+        </EntityType>
+        <EntityType Name="Ejemplar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdLibro" Type="Int32" />
+          <Property Name="FechaDonacion" Type="DateTime" Precision="0" />
+          <Property Name="Prestamo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Idioma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Libro" Relationship="Self.FK_Ejemplar_Libro" FromRole="Ejemplar" ToRole="Libro" />
+          <NavigationProperty Name="PrestamoEjemplar" Relationship="Self.FK_PrestamoEjemplar_ToEjemplar" FromRole="Ejemplar" ToRole="PrestamoEjemplar" />
+        </EntityType>
+        <EntityType Name="Libro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreOriginal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreTraducido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AnioEdicion" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="NumeroEdicion" Type="Decimal" Precision="4" Scale="0" />
+          <NavigationProperty Name="Ejemplar" Relationship="Self.FK_Ejemplar_Libro" FromRole="Libro" ToRole="Ejemplar" />
+        </EntityType>
+        <EntityType Name="PrestamoEjemplar">
+          <Key>
+            <PropertyRef Name="IdEjemplar" />
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdEjemplar" Type="Int32" Nullable="false" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="FechaPrestamo" Type="DateTime" Precision="3" />
+          <Property Name="FechaDevolucion" Type="DateTime" Precision="3" />
+          <Property Name="FechaDevuelto" Type="DateTime" Precision="3" />
+          <Property Name="EjemplarPerdido" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_PrestamoEjemplar_ToCliente" FromRole="PrestamoEjemplar" ToRole="Cliente" />
+          <NavigationProperty Name="Ejemplar" Relationship="Self.FK_PrestamoEjemplar_ToEjemplar" FromRole="PrestamoEjemplar" ToRole="Ejemplar" />
+        </EntityType>
+        <Association Name="FK_PrestamoEjemplar_ToCliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="PrestamoEjemplar" Type="Self.PrestamoEjemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrestamoEjemplar">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ejemplar_Libro">
+          <End Role="Libro" Type="Self.Libro" Multiplicity="0..1" />
+          <End Role="Ejemplar" Type="Self.Ejemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejemplar">
+              <PropertyRef Name="IdLibro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrestamoEjemplar_ToEjemplar">
+          <End Role="Ejemplar" Type="Self.Ejemplar" Multiplicity="1" />
+          <End Role="PrestamoEjemplar" Type="Self.PrestamoEjemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ejemplar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrestamoEjemplar">
+              <PropertyRef Name="IdEjemplar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LaboratorioTresEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Ejemplar" EntityType="Self.Ejemplar" />
+          <EntitySet Name="Libro" EntityType="Self.Libro" />
+          <EntitySet Name="PrestamoEjemplar" EntityType="Self.PrestamoEjemplar" />
+          <AssociationSet Name="FK_PrestamoEjemplar_ToCliente" Association="Self.FK_PrestamoEjemplar_ToCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejemplar_Libro" Association="Self.FK_Ejemplar_Libro">
+            <End Role="Libro" EntitySet="Libro" />
+            <End Role="Ejemplar" EntitySet="Ejemplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrestamoEjemplar_ToEjemplar" Association="Self.FK_PrestamoEjemplar_ToEjemplar">
+            <End Role="Ejemplar" EntitySet="Ejemplar" />
+            <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LaboratorioTresDBModelStoreContainer" CdmEntityContainer="LaboratorioTresEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ejemplar">
+            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.Ejemplar">
+              <MappingFragment StoreEntitySet="Ejemplar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+                <ScalarProperty Name="FechaDonacion" ColumnName="FechaDonacion" />
+                <ScalarProperty Name="Prestamo" ColumnName="Prestamo" />
+                <ScalarProperty Name="Idioma" ColumnName="Idioma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Libro">
+            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.Libro">
+              <MappingFragment StoreEntitySet="Libro">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombreOriginal" ColumnName="NombreOriginal" />
+                <ScalarProperty Name="NombreTraducido" ColumnName="NombreTraducido" />
+                <ScalarProperty Name="AnioEdicion" ColumnName="AnioEdicion" />
+                <ScalarProperty Name="NumeroEdicion" ColumnName="NumeroEdicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrestamoEjemplar">
+            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.PrestamoEjemplar">
+              <MappingFragment StoreEntitySet="PrestamoEjemplar">
+                <ScalarProperty Name="IdEjemplar" ColumnName="IdEjemplar" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
+                <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+                <ScalarProperty Name="FechaDevuelto" ColumnName="FechaDevuelto" />
+                <ScalarProperty Name="EjemplarPerdido" ColumnName="EjemplarPerdido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
