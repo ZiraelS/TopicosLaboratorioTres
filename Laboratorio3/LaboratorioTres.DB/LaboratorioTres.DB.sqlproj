@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{cefef39e-45f0-4a1d-818b-8e86ba76999d}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -70,13 +70,16 @@
     <RefactorLog Include="LaboratorioTres.DB.refactorlog" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="Scripts\InsertClientes.sql" />
+    <None Include="Scripts\InsertClientes.sql" />
+    <None Include="LaboratorioTres.DB.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\InsertarClientesRandom.sql" />
     <None Include="Scripts\InsertarLibros.sql" />
     <None Include="Scripts\InsertarEjemplares.sql" />
     <None Include="Scripts\InsertarPrestamosEjemplares.sql" />
-    <None Include="Scripts\RecrearTodo.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeploy.sql" />
   </ItemGroup>
 </Project>

@@ -34,7 +34,7 @@ INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (703,
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (704,7,DATEFROMPARTS(2018,3,30),'N','ING')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (705,7,DATEFROMPARTS(2018,3,30),'N','ING')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (801,8,DATEFROMPARTS(2018,3,30),'N','ESP')
-INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (803,8,DATEFROMPARTS(2018,3,30),'N','ESP')
+INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (802,8,DATEFROMPARTS(2018,3,30),'N','ESP')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (803,8,DATEFROMPARTS(2018,3,30),'N','ESP')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (804,8,DATEFROMPARTS(2018,3,30),'N','ING')
 INSERT INTO Ejemplar (Id, IdLibro, FechaDonacion, Prestamo, Idioma) VALUES (805,8,DATEFROMPARTS(2018,3,30),'N','ING')
