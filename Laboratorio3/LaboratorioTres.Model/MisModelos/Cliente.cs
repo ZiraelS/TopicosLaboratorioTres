@@ -11,17 +11,40 @@ namespace LaboratorioTres.Model
 
     public partial class Cliente
     {
+
         [DataMember]
         [NotMapped]
         public int EdadCliente
         {
             get
             {
-                DateTime? Nacimiento = FechaNacimiento;
-                DateTime Hoy = DateTime.Today;
-                return (int)((Hoy - (DateTime)Nacimiento).TotalDays / (365.25 / 12));
+                DateTime FechaDeNacimiento = FechaNacimiento == null ? DateTime.Today : (DateTime)FechaNacimiento;
+                return (int)((DateTime.Today - (DateTime)FechaDeNacimiento).TotalDays / (365.25 / 12));
             }
-            set { }
+            //set { }
+        }
+
+        [DataMember]
+        [NotMapped]
+        public String DescripcionSexo
+        {
+            get
+            {
+                String LetraSexo = Sexo == null ? "D" : (String)Sexo;
+                if (LetraSexo == "F")
+                {
+                    return "Femenino";
+                }
+                else if (LetraSexo == "M")
+                {
+                    return "Maculino";
+                }
+                else
+                {
+                    return "Desconocido";
+                }
+            }
+            //set { }
         }
     }
 }
