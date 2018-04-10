@@ -7,16 +7,16 @@ namespace BLApplication.Dominio.Acciones
 {
     public class Clients
     {
-        public IList<Model.Client> ListarAproximadaNombreClientes(string elNombre)
+        public IList<LaboratorioTres.Model.Cliente> ListarAproximadaNombreClientes(string elNombre)
         {
             var elRepositorio = new Dominio.Repositorio.Clients();
-            return elRepositorio.ListarAproximadaNombreClientes(elNombre);
+            return elRepositorio.ListarAproximadaNombreClientes(false,elNombre);
         }
 
-        public IList<Model.Client> ListarLibrosSolicitadosPorCliente(string elCliente)
-        {
-            var elRepositorio = new Dominio.Repositorio.Clients();
-            return elRepositorio.ListarAproximadaNombreClientes(elCliente);
-        }
+        //public IList<LaboratorioTres.Model.Cliente> ListarLibrosSolicitadosPorCliente(string elCliente)
+        //{
+        //    var elRepositorio = new Dominio.Repositorio.Clients();
+        //   // return elRepositorio.ListarAproximadaNombreClientes(elCliente);
+        //}
     }
 }
