@@ -12,7 +12,6 @@ namespace BLApplication.Dominio.Acciones
             var elRepositorio = new Dominio.Repositorio.Clients();
             return elRepositorio.ListarAproximadaNombreClientes(false,elNombre);
         }
-
         public IList<LaboratorioTres.Model.Cliente> ClientesEjemplarLibro(int idLibro)
         {
             var elRepositorio = new Dominio.Repositorio.Clients();

@@ -13,7 +13,6 @@ namespace BLApplication.Dominio.Especificaciones
             var laAccion = new Dominio.Acciones.Clients();
             return laAccion.ListarAproximadaNombreClientes(elNombre);
         }
-
         public IList<LaboratorioTres.Model.Cliente> ClientesEjemplarLibro(int idLibro)
         {
             var laAccion = new Dominio.Acciones.Clients();

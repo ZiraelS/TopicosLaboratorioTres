@@ -37,6 +37,5 @@ namespace BLApplication.Dominio.Repositorio
 
             return Libros;
         }
-
     }
 }
