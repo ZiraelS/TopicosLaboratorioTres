@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LaboratorioTres.DB", "LaboratorioTres.DB\LaboratorioTres.DB.sqlproj", "{CEFEF39E-45F0-4A1D-818B-8E86BA76999D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLApplication", "BLApplication\BLApplication.csproj", "{2DB0F73E-EBA4-4188-8C63-DD03D3D959C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaboratorioTres.Model", "LaboratorioTres.Model\LaboratorioTres.Model.csproj", "{2F6030DD-68AF-4347-B470-8346097501BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaboratorioTres.UI", "LaboratorioTres.UI\LaboratorioTres.UI.csproj", "{D2345832-E776-4DA8-8E50-CE6C7A158289}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaboratorioTres.UI.Tests", "LaboratorioTres.UI.Tests\LaboratorioTres.UI.Tests.csproj", "{95B4528A-714A-48FC-BF61-B3F93913E0F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +33,14 @@ Global
 		{2F6030DD-68AF-4347-B470-8346097501BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F6030DD-68AF-4347-B470-8346097501BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F6030DD-68AF-4347-B470-8346097501BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2345832-E776-4DA8-8E50-CE6C7A158289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2345832-E776-4DA8-8E50-CE6C7A158289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2345832-E776-4DA8-8E50-CE6C7A158289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2345832-E776-4DA8-8E50-CE6C7A158289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B4528A-714A-48FC-BF61-B3F93913E0F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B4528A-714A-48FC-BF61-B3F93913E0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B4528A-714A-48FC-BF61-B3F93913E0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B4528A-714A-48FC-BF61-B3F93913E0F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

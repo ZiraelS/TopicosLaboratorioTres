@@ -14,32 +14,28 @@ namespace BLApplication
     {
         //WCF
         [OperationContract]
-        IList<Modelo.Client> BuscaAproximadaNombreClientes(string elNombre);
+        IList<LaboratorioTres.Model.Cliente> BuscaAproximadaNombreClientes(string elNombre);
 
         [OperationContract]
-        IList<Modelo.Library> BuscaAproximadaTituloLibro(string elTitulo);
+        IList<LaboratorioTres.Model.Cliente> ClientesEjemplarLibro(int idLibro);
 
         [OperationContract]
-        IList<Modelo.Library> BuscaExactaIdentificadorLibro(string elIdentificador);
+        IList<LaboratorioTres.Model.Ejemplar> ListarAproximadaEjemplares(bool busquedaExacta, string elNombre);
 
         [OperationContract]
-        IList<Modelo.Library> LibrosNoDevueltosEntregaNoVencida(string Valididacion);
+        LaboratorioTres.Model.Ejemplar ObtenerPorId(int EjemplarId);
 
         [OperationContract]
-        IList<Modelo.Library> LibrosNoDevueltosEntregaVencida(string Valididacion);
+        IList<LaboratorioTres.Model.Ejemplar> EjemplaresNoDevueltos(bool vencidos);
 
         [OperationContract]
-        IList<Modelo.Client> LibrosSolicitadosPorCliente(string elCliente);
+        IList<LaboratorioTres.Model.Ejemplar> EjemplaresPorCliente(int IdCliente);
 
         [OperationContract]
-        IList<Modelo.Library> ClientesSolicitadoLibro(string elLibro);
+        IList<LaboratorioTres.Model.Ejemplar> EjemplaresPerdidos(DateTime FechaInicio, DateTime FechaFin);
 
         [OperationContract]
-        IList<Modelo.Library> LibrosPerdidosIntervalo(string ValidacionPerdido, DateTime fecha1, DateTime fecha2);
-
-        [OperationContract]
-        IList<Modelo.Library> LibrosPerdidos(string ValidacionPerdido);
-
+        LaboratorioTres.Model.Libro ObtenerLibroPorId(int LibroId);
 
         //Otro
         [OperationContract]

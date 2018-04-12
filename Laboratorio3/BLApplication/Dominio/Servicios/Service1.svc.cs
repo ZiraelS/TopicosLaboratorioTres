@@ -13,75 +13,61 @@ namespace BLApplication
     public class Service1 : IService1
     {
         //WCF
-        public IList<Modelo.Client> BuscaAproximadaNombreClientes(string elNombre)
+        public IList<LaboratorioTres.Model.Cliente> BuscaAproximadaNombreClientes(string elNombre)
         {
             var laEspecificacion = new Dominio.Especificaciones.Clients();
-            IList<Model.Client> elResultado;
+            IList<LaboratorioTres.Model.Cliente> elResultado;
             elResultado = laEspecificacion.ListarAproximadaNombreClientes(elNombre);
             return elResultado;
         }
-
-        public IList<Modelo.Library> BuscaAproximadaTituloLibro(string elTitulo)
-        {
-            var laEspecificacion = new Dominio.Especificaciones.Libraries();
-            IList<Model.Library> elResultado;
-            elResultado = laEspecificacion.ListarAproximadaTituloLibro(elTitulo);
-            return elResultado;
-        }
-
-        public IList<Modelo.Library> BuscaExactaIdentificadorLibro(string elIdentificador)
-        {
-            var laEspecificacion = new Dominio.Especificaciones.Libraries();
-            IList<Model.Library> elResultado;
-            elResultado = laEspecificacion.ListarExactaIdentificadorLibro(elIdentificador);
-            return elResultado;
-        }
-
-        public IList<Modelo.Library> LibrosNoDevueltosEntregaNoVencida(string Valididacion)
-        {
-            var laEspecificacion = new Dominio.Especificaciones.Libraries();
-            IList<Model.Library> elResultado;
-            elResultado = laEspecificacion.ListarLibrosNoDevueltosEntregaNoVencida(Valididacion);
-            return elResultado;
-        }
-
-        public IList<Modelo.Library> LibrosNoDevueltosEntregaVencida(string Valididacion)
-        {
-            var laEspecificacion = new Dominio.Especificaciones.Libraries();
-            IList<Model.Library> elResultado;
-            elResultado = laEspecificacion.ListarLibrosNoDevueltosEntregaVencida(Valididacion);
-            return elResultado;
-        }
-
-        public IList<Modelo.Client> LibrosSolicitadosPorCliente(string elCliente)
+        public IList<LaboratorioTres.Model.Cliente> ClientesEjemplarLibro(int idLibro)
         {
             var laEspecificacion = new Dominio.Especificaciones.Clients();
-            IList<Model.Client> elResultado;
-            elResultado = laEspecificacion.ListarLibrosSolicitadosPorCliente(elCliente);
+            IList<LaboratorioTres.Model.Cliente> elResultado;
+            elResultado = laEspecificacion.ClientesEjemplarLibro(idLibro);
             return elResultado;
         }
-
-        public IList<Modelo.Library> ClientesSolicitadoLibro(string elLibro)
+        public IList<LaboratorioTres.Model.Ejemplar> ListarAproximadaEjemplares(bool busquedaExacta, string elNombre)
         {
-            var laEspecificacion = new Dominio.Especificaciones.Libraries();
-            IList<Model.Library> elResultado;
-            elResultado = laEspecificacion.ListarClientesSolicitadoLibro(elLibro);
+            var laEspecificacion = new Dominio.Especificaciones.Ejemplares();
+            IList < LaboratorioTres.Model.Ejemplar> elResultado;
+            elResultado = laEspecificacion.ListarAproximadaEjemplares(busquedaExacta, elNombre);
             return elResultado;
         }
 
-        public IList<Modelo.Library> LibrosPerdidosIntervalo(string ValidacionPerdido, DateTime fecha1, DateTime fecha2)
+        public LaboratorioTres.Model.Ejemplar ObtenerPorId(int EjemplarId)
         {
-            var laEspecificacion = new Dominio.Especificaciones.Libraries();
-            IList<Model.Library> elResultado;
-            elResultado = laEspecificacion.ListarLibrosPerdidosIntervalo(ValidacionPerdido, fecha1, fecha2);
+            var laEspecificacion = new Dominio.Especificaciones.Ejemplares();
+            LaboratorioTres.Model.Ejemplar elResultado;
+            elResultado = laEspecificacion.ObtenerPorId(EjemplarId);
             return elResultado;
         }
-
-        public IList<Modelo.Library> LibrosPerdidos(string ValidacionPerdido)
+        public IList<LaboratorioTres.Model.Ejemplar> EjemplaresNoDevueltos(bool vencidos)
         {
-            var laEspecificacion = new Dominio.Especificaciones.Libraries();
-            IList<Model.Library> elResultado;
-            elResultado = laEspecificacion.ListarLibrosPerdidos(ValidacionPerdido);
+            var laEspecificacion = new Dominio.Especificaciones.Ejemplares();
+            IList<LaboratorioTres.Model.Ejemplar> elResultado;
+            elResultado = laEspecificacion.EjemplaresNoDevueltos(vencidos);
+            return elResultado;
+        }
+        public IList<LaboratorioTres.Model.Ejemplar> EjemplaresPorCliente(int IdCliente)
+        {
+            var laEspecificacion = new Dominio.Especificaciones.Ejemplares();
+            IList<LaboratorioTres.Model.Ejemplar> elResultado;
+            elResultado = laEspecificacion.EjemplaresPorCliente(IdCliente);
+            return elResultado;
+        }
+        public IList<LaboratorioTres.Model.Ejemplar> EjemplaresPerdidos(DateTime FechaInicio, DateTime FechaFin)
+        {
+            var laEspecificacion = new Dominio.Especificaciones.Ejemplares();
+            IList<LaboratorioTres.Model.Ejemplar> elResultado;
+            elResultado = laEspecificacion.EjemplaresPerdidos(FechaInicio, FechaFin);
+            return elResultado;
+        }
+        public LaboratorioTres.Model.Libro ObtenerLibroPorId(int LibroId)
+        {
+            var laEspecificacion = new Dominio.Especificaciones.Libros();
+            LaboratorioTres.Model.Libro elResultado;
+            elResultado = laEspecificacion.ObtenerPorId(LibroId);
             return elResultado;
         }
 
@@ -92,7 +78,9 @@ namespace BLApplication
 
 
 
-        //Otro
+
+
+            //Otro
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);

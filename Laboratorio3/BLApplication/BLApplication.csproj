@@ -41,7 +41,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -66,9 +73,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dominio\Acciones\Clients.cs" />
+    <Compile Include="Dominio\Acciones\Ejemplares.cs" />
+    <Compile Include="Dominio\Acciones\Libros.cs" />
     <Compile Include="Dominio\Especificaciones\Clients.cs" />
-    <Compile Include="Dominio\Especificaciones\Libraries.cs" />
+    <Compile Include="Dominio\Especificaciones\Ejemplares.cs" />
+    <Compile Include="Dominio\Especificaciones\Libros.cs" />
     <Compile Include="Dominio\Repositorio\Clients.cs" />
+    <Compile Include="Dominio\Repositorio\Ejemplares.cs" />
+    <Compile Include="Dominio\Repositorio\Libros.cs" />
+    <Compile Include="Dominio\Repositorio\PrestamoEjemplar.cs" />
     <Compile Include="Dominio\Servicios\Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -80,12 +93,19 @@
     <Folder Include="Dominio\Validaciones\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LaboratorioTres.Model\LaboratorioTres.Model.csproj">
+      <Project>{2f6030dd-68af-4347-b470-8346097501bd}</Project>
+      <Name>LaboratorioTres.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

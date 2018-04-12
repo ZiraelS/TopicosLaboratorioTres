@@ -22,7 +22,8 @@ namespace LaboratorioTres.Model
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            //throw new UnintentionalCodeFirstException(
+
         }
     
         public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
