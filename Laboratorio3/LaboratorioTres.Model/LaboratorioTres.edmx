@@ -4,13 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LaboratorioTres.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="TopicosLaboratorioTresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
@@ -42,9 +36,9 @@
         </EntityType>
         <EntityType Name="PrestamoEjemplar">
           <Key>
-            <PropertyRef Name="IdEjemplar" />
-            <PropertyRef Name="IdCliente" />
+            <PropertyRef Name="PrestamoEjemplarID" />
           </Key>
+          <Property Name="PrestamoEjemplarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdEjemplar" Type="int" Nullable="false" />
           <Property Name="IdCliente" Type="int" Nullable="false" />
           <Property Name="FechaPrestamo" Type="datetime" />
@@ -88,8 +82,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LaboratorioTresDBModelStoreContainer">
-          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="TopicosLaboratorioTresModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ejemplar" EntityType="Self.Ejemplar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
@@ -107,17 +100,28 @@
             <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LaboratorioTres.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="Guid" Nullable="false" />
-        </EntityType>
+      <Schema Namespace="TopicosLaboratorioTresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TopicosLaboratorioTresEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="TopicosLaboratorioTresModel.Cliente" />
+          <EntitySet Name="Ejemplar" EntityType="TopicosLaboratorioTresModel.Ejemplar" />
+          <EntitySet Name="Libro" EntityType="TopicosLaboratorioTresModel.Libro" />
+          <EntitySet Name="PrestamoEjemplar" EntityType="TopicosLaboratorioTresModel.PrestamoEjemplar" />
+          <AssociationSet Name="FK_PrestamoEjemplar_ToCliente" Association="TopicosLaboratorioTresModel.FK_PrestamoEjemplar_ToCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejemplar_Libro" Association="TopicosLaboratorioTresModel.FK_Ejemplar_Libro">
+            <End Role="Libro" EntitySet="Libro" />
+            <End Role="Ejemplar" EntitySet="Ejemplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrestamoEjemplar_ToEjemplar" Association="TopicosLaboratorioTresModel.FK_PrestamoEjemplar_ToEjemplar">
+            <End Role="Ejemplar" EntitySet="Ejemplar" />
+            <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
@@ -126,7 +130,7 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
           <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PrestamoEjemplar" Relationship="Self.FK_PrestamoEjemplar_ToCliente" FromRole="Cliente" ToRole="PrestamoEjemplar" />
+          <NavigationProperty Name="PrestamoEjemplar" Relationship="TopicosLaboratorioTresModel.FK_PrestamoEjemplar_ToCliente" FromRole="Cliente" ToRole="PrestamoEjemplar" />
         </EntityType>
         <EntityType Name="Ejemplar">
           <Key>
@@ -137,8 +141,8 @@
           <Property Name="FechaDonacion" Type="DateTime" Precision="0" />
           <Property Name="Prestamo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="Idioma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Libro" Relationship="Self.FK_Ejemplar_Libro" FromRole="Ejemplar" ToRole="Libro" />
-          <NavigationProperty Name="PrestamoEjemplar" Relationship="Self.FK_PrestamoEjemplar_ToEjemplar" FromRole="Ejemplar" ToRole="PrestamoEjemplar" />
+          <NavigationProperty Name="Libro" Relationship="TopicosLaboratorioTresModel.FK_Ejemplar_Libro" FromRole="Ejemplar" ToRole="Libro" />
+          <NavigationProperty Name="PrestamoEjemplar" Relationship="TopicosLaboratorioTresModel.FK_PrestamoEjemplar_ToEjemplar" FromRole="Ejemplar" ToRole="PrestamoEjemplar" />
         </EntityType>
         <EntityType Name="Libro">
           <Key>
@@ -149,25 +153,25 @@
           <Property Name="NombreTraducido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="AnioEdicion" Type="Decimal" Precision="4" Scale="0" />
           <Property Name="NumeroEdicion" Type="Decimal" Precision="4" Scale="0" />
-          <NavigationProperty Name="Ejemplar" Relationship="Self.FK_Ejemplar_Libro" FromRole="Libro" ToRole="Ejemplar" />
+          <NavigationProperty Name="Ejemplar" Relationship="TopicosLaboratorioTresModel.FK_Ejemplar_Libro" FromRole="Libro" ToRole="Ejemplar" />
         </EntityType>
         <EntityType Name="PrestamoEjemplar">
           <Key>
-            <PropertyRef Name="IdEjemplar" />
-            <PropertyRef Name="IdCliente" />
+            <PropertyRef Name="PrestamoEjemplarID" />
           </Key>
+          <Property Name="PrestamoEjemplarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdEjemplar" Type="Int32" Nullable="false" />
           <Property Name="IdCliente" Type="Int32" Nullable="false" />
           <Property Name="FechaPrestamo" Type="DateTime" Precision="3" />
           <Property Name="FechaDevolucion" Type="DateTime" Precision="3" />
           <Property Name="FechaDevuelto" Type="DateTime" Precision="3" />
           <Property Name="EjemplarPerdido" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_PrestamoEjemplar_ToCliente" FromRole="PrestamoEjemplar" ToRole="Cliente" />
-          <NavigationProperty Name="Ejemplar" Relationship="Self.FK_PrestamoEjemplar_ToEjemplar" FromRole="PrestamoEjemplar" ToRole="Ejemplar" />
+          <NavigationProperty Name="Cliente" Relationship="TopicosLaboratorioTresModel.FK_PrestamoEjemplar_ToCliente" FromRole="PrestamoEjemplar" ToRole="Cliente" />
+          <NavigationProperty Name="Ejemplar" Relationship="TopicosLaboratorioTresModel.FK_PrestamoEjemplar_ToEjemplar" FromRole="PrestamoEjemplar" ToRole="Ejemplar" />
         </EntityType>
         <Association Name="FK_PrestamoEjemplar_ToCliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="PrestamoEjemplar" Type="Self.PrestamoEjemplar" Multiplicity="*" />
+          <End Type="TopicosLaboratorioTresModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="TopicosLaboratorioTresModel.PrestamoEjemplar" Role="PrestamoEjemplar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
               <PropertyRef Name="Id" />
@@ -178,8 +182,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ejemplar_Libro">
-          <End Role="Libro" Type="Self.Libro" Multiplicity="0..1" />
-          <End Role="Ejemplar" Type="Self.Ejemplar" Multiplicity="*" />
+          <End Type="TopicosLaboratorioTresModel.Libro" Role="Libro" Multiplicity="0..1" />
+          <End Type="TopicosLaboratorioTresModel.Ejemplar" Role="Ejemplar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Libro">
               <PropertyRef Name="Id" />
@@ -190,8 +194,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PrestamoEjemplar_ToEjemplar">
-          <End Role="Ejemplar" Type="Self.Ejemplar" Multiplicity="1" />
-          <End Role="PrestamoEjemplar" Type="Self.PrestamoEjemplar" Multiplicity="*" />
+          <End Type="TopicosLaboratorioTresModel.Ejemplar" Role="Ejemplar" Multiplicity="1" />
+          <End Type="TopicosLaboratorioTresModel.PrestamoEjemplar" Role="PrestamoEjemplar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ejemplar">
               <PropertyRef Name="Id" />
@@ -201,79 +205,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LaboratorioTresEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
-          <EntitySet Name="Ejemplar" EntityType="Self.Ejemplar" />
-          <EntitySet Name="Libro" EntityType="Self.Libro" />
-          <EntitySet Name="PrestamoEjemplar" EntityType="Self.PrestamoEjemplar" />
-          <AssociationSet Name="FK_PrestamoEjemplar_ToCliente" Association="Self.FK_PrestamoEjemplar_ToCliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ejemplar_Libro" Association="Self.FK_Ejemplar_Libro">
-            <End Role="Libro" EntitySet="Libro" />
-            <End Role="Ejemplar" EntitySet="Ejemplar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PrestamoEjemplar_ToEjemplar" Association="Self.FK_PrestamoEjemplar_ToEjemplar">
-            <End Role="Ejemplar" EntitySet="Ejemplar" />
-            <End Role="PrestamoEjemplar" EntitySet="PrestamoEjemplar" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LaboratorioTresDBModelStoreContainer" CdmEntityContainer="LaboratorioTresEntities">
-          <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.C__RefactorLog">
-              <MappingFragment StoreEntitySet="__RefactorLog">
-                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="TopicosLaboratorioTresModelStoreContainer" CdmEntityContainer="TopicosLaboratorioTresEntities">
           <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.Cliente">
+            <EntityTypeMapping TypeName="TopicosLaboratorioTresModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
                 <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ejemplar">
-            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.Ejemplar">
+            <EntityTypeMapping TypeName="TopicosLaboratorioTresModel.Ejemplar">
               <MappingFragment StoreEntitySet="Ejemplar">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
-                <ScalarProperty Name="FechaDonacion" ColumnName="FechaDonacion" />
-                <ScalarProperty Name="Prestamo" ColumnName="Prestamo" />
                 <ScalarProperty Name="Idioma" ColumnName="Idioma" />
+                <ScalarProperty Name="Prestamo" ColumnName="Prestamo" />
+                <ScalarProperty Name="FechaDonacion" ColumnName="FechaDonacion" />
+                <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Libro">
-            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.Libro">
+            <EntityTypeMapping TypeName="TopicosLaboratorioTresModel.Libro">
               <MappingFragment StoreEntitySet="Libro">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="NombreOriginal" ColumnName="NombreOriginal" />
-                <ScalarProperty Name="NombreTraducido" ColumnName="NombreTraducido" />
-                <ScalarProperty Name="AnioEdicion" ColumnName="AnioEdicion" />
                 <ScalarProperty Name="NumeroEdicion" ColumnName="NumeroEdicion" />
+                <ScalarProperty Name="AnioEdicion" ColumnName="AnioEdicion" />
+                <ScalarProperty Name="NombreTraducido" ColumnName="NombreTraducido" />
+                <ScalarProperty Name="NombreOriginal" ColumnName="NombreOriginal" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PrestamoEjemplar">
-            <EntityTypeMapping TypeName="LaboratorioTres.DBModel.PrestamoEjemplar">
+            <EntityTypeMapping TypeName="TopicosLaboratorioTresModel.PrestamoEjemplar">
               <MappingFragment StoreEntitySet="PrestamoEjemplar">
-                <ScalarProperty Name="IdEjemplar" ColumnName="IdEjemplar" />
-                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
-                <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
-                <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
-                <ScalarProperty Name="FechaDevuelto" ColumnName="FechaDevuelto" />
                 <ScalarProperty Name="EjemplarPerdido" ColumnName="EjemplarPerdido" />
+                <ScalarProperty Name="FechaDevuelto" ColumnName="FechaDevuelto" />
+                <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+                <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEjemplar" ColumnName="IdEjemplar" />
+                <ScalarProperty Name="PrestamoEjemplarID" ColumnName="PrestamoEjemplarID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -291,7 +270,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

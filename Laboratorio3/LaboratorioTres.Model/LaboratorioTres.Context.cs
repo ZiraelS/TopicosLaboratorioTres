@@ -13,20 +13,18 @@ namespace LaboratorioTres.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LaboratorioTresEntities : DbContext
+    public partial class TopicosLaboratorioTresEntities : DbContext
     {
-        public LaboratorioTresEntities()
-            : base("name=LaboratorioTresEntities")
+        public TopicosLaboratorioTresEntities()
+            : base("name=TopicosLaboratorioTresEntities")
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException(
-
+          //  throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Ejemplar> Ejemplar { get; set; }
         public virtual DbSet<Libro> Libro { get; set; }

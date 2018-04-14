@@ -8,7 +8,7 @@ namespace BLApplication.Dominio.Repositorio
 {
     public class Ejemplares
     {
-        private static LaboratorioTres.Model.LaboratorioTresEntities _context = new LaboratorioTresEntities();
+        private static LaboratorioTres.Model.TopicosLaboratorioTresEntities _context = new TopicosLaboratorioTresEntities();
 
         public Ejemplares()
         {

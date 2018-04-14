@@ -14,6 +14,7 @@ namespace LaboratorioTres.Model
     
     public partial class PrestamoEjemplar
     {
+        public int PrestamoEjemplarID { get; set; }
         public int IdEjemplar { get; set; }
         public int IdCliente { get; set; }
         public Nullable<System.DateTime> FechaPrestamo { get; set; }

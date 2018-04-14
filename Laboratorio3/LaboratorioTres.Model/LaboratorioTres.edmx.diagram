@@ -4,15 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8b16331c08ef4c8e8e4f866b25a12262" Name="Diagram1">
-        <EntityTypeShape EntityType="LaboratorioTres.DBModel.C__RefactorLog" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaboratorioTres.DBModel.Cliente" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaboratorioTres.DBModel.Ejemplar" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaboratorioTres.DBModel.Libro" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaboratorioTres.DBModel.PrestamoEjemplar" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="LaboratorioTres.DBModel.FK_PrestamoEjemplar_ToCliente" ManuallyRouted="false" />
-        <AssociationConnector Association="LaboratorioTres.DBModel.FK_Ejemplar_Libro" ManuallyRouted="false" />
-        <AssociationConnector Association="LaboratorioTres.DBModel.FK_PrestamoEjemplar_ToEjemplar" ManuallyRouted="false" />
+      <Diagram DiagramId="8513e30094cf4d1d983a3b315c25791f" Name="Diagram1">
+        <EntityTypeShape EntityType="TopicosLaboratorioTresModel.Cliente" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="TopicosLaboratorioTresModel.Ejemplar" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="TopicosLaboratorioTresModel.Libro" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="TopicosLaboratorioTresModel.PrestamoEjemplar" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="TopicosLaboratorioTresModel.FK_PrestamoEjemplar_ToCliente" />
+        <AssociationConnector Association="TopicosLaboratorioTresModel.FK_Ejemplar_Libro" />
+        <AssociationConnector Association="TopicosLaboratorioTresModel.FK_PrestamoEjemplar_ToEjemplar" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
